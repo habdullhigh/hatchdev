@@ -53,10 +53,31 @@ class BT<T> implements IBinaryTree<T>{
      
 
   }
-  // retrieve(): treeNode<T> {
-    // return 
-  // }
+  retrievevalues(val:T){
+    //function checks for all nodes with value given
+    let answers:treeNode<T>[] =[] 
+    for(let i = 0;i<this.Tree.length;i++){
+      if(this.Tree[i][0] == val){
+        answers.push(this.Tree[i])
+      }
+    }
+    return answers
+  }
+  retrieveChildren(val:number){
+    let answers:treeNode<T>[] = []
+    for(let i = 0;i<this.Tree.length;i++){
+      if(this.Tree[i][1] == val){
+        answers.push(this.Tree[i],this.Tree[i+1])
+        return answers
+      }
+    }
+    if(answers.length == 0) return -1;
+    return answers
+    }
 }
+
+
+
 
 const bt1 = new BT<number>("binary")
 
@@ -66,10 +87,12 @@ bt1.BinaryInsert([3,0])
 bt1.BinaryInsert([4,9])
 bt1.BinaryInsert([5,0])
 bt1.BinaryInsert([6,9])
-bt1.BinaryInsert([7,0])
-bt1.BinaryInsert([8,9])
+bt1.BinaryInsert([9,0])
+bt1.BinaryInsert([9,9])
 bt1.BinaryInsert([9,9])
 bt1.BinaryInsert([10,0])
 bt1.BinaryInsert([11,9])
 
 console.log(bt1.Tree)
+console.log(bt1.retrieveChildren(4))
+console.log(bt1.retrievevalues(9))
